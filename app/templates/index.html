@@ -1,0 +1,65 @@
+<!-- copied from natanlao/natanlao.github.io -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wisdaum generator</title>
+  <link rel="stylesheet" href="https://natan.la/css/default.css" />
+  <!-- ugly, i know -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/forms-nr-min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/buttons-min.css" />
+  <style type="text/css">
+    h1 { line-height: 1em; }
+    select { margin-bottom: 1em; }
+    blockquote { font-family: monospace; }
+  </style>
+  <link rel="shortcut icon" type="image/png" href="https://natan.la/favicon.png"/>
+</head>
+<body>
+  <header>
+    <h1>Judicious Observation Emitter (JOE)</h1>
+  </header>
+  <main>
+      <p>I trained a <a href="https://en.wikipedia.org/wiki/GPT-2">machine learning model</a> with:</p>
+      <ul>
+          <li>55383 Signal messages (pm and gm, up to 2 Nov 2020),</li>
+          <li>1660 public Slack messages, and</li>
+          <li>2 Google Drive documents.</li>
+      </ul>
+      <form class="pure-form-stacked pure-form" id="form" action="/" method="POST">
+          <fieldset>
+              <label for="name">Give me wisdom from...</label>
+              <select id="name" name="name">
+                  {% set _name = name if name is defined else '' %}
+                  {% for persona in personas %}
+                  <option value="{{ persona }}" {{ 'selected' if _name == persona else '' }}>{{ persona|title }}</option>
+                  {% endfor %}
+              </select>
+              <!-- Previously this would actually control the temperature but with the new approach it doesn't do anything. -->
+              <!-- I'm leaving it here anyway to give them a sense of control :) -->
+              <label for="temp">Enlightenment level</label>
+              <select id="temperature" name="temperature">
+                  <option value="0.4">Mainstream academia (too normal)</option>
+                  <option value="0.7" selected>Independent thinker (normal)</option>
+                  <option value="1.0">Full enlightenment (manic)</option>
+              </select>
+
+              <button id="submit" type="submit" class="pure-button pure-button-primary">Seek enlightenment</button>
+            </fieldset>
+        </form>
+        {% if wisdom is defined %}
+        <div id="wisdom">
+            <blockquote>{{ wisdom|safe }}</blockquote>
+        </div>
+        <p>So speaketh JOE. The world is quiet.</p>
+        {% endif %}
+  </main>
+  <footer>
+    <small>
+      Background <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <a href="https://www.heropatterns.com/">Steve Schoger</a>.<br>
+      Favicon <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <a href="https://github.com/mozilla/fxemoji">FxEmojis</a>.<br>
+    </small>
+  </footer>
+</body>
+</html>
