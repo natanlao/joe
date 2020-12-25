@@ -16,11 +16,11 @@ incredibly easy.
 Here's the bird's eye view:
 
 * To build a dataset to train the model on, I extracted messages from some
-  Signal backups and a Slack export (see [extract/][extract/]). I wrote the
+  Signal backups and a Slack export (see [extract/](extract/)). I wrote the
   messages (separated by person) to a text file.
 
 * To train the model, I used
-  [minimaxir/gpt-2-imple][https://github.com/minimaxir/gpt-2-simple] running on a
+  [minimaxir/gpt-2-simple](https://github.com/minimaxir/gpt-2-simple) running on a
   Google Colab notebook. The process is well-described there.
 
 * I generated a bunch of text on Google Colab (my personal laptop is far too
@@ -29,7 +29,7 @@ Here's the bird's eye view:
   to lie, except for effect. Good enough for me.
 
 The original plan was to use the finetuned model with
-[minimaxir/gpt-2-cloud-run][https://github.com/minimaxir/gpt-2-cloud-run] but I
+[minimaxir/gpt-2-cloud-run](https://github.com/minimaxir/gpt-2-cloud-run) but I
 didn't like the results with 124M, and Google makes it literally impossible to
 deploy anything with a GPU if you have a "new" GCP account.
 
